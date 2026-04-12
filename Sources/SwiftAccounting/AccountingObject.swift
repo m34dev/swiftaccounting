@@ -21,7 +21,7 @@
 
 import Foundation
 
-public protocol AccountingObject: Identifiable, Hashable, Equatable {
+public protocol AccountingObject: Identifiable, Hashable, Equatable, Sendable {
     
     // MARK: - Properties
     

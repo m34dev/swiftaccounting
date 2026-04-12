@@ -22,40 +22,38 @@
 import Foundation
 import CountryKit
 
-public class AccountingPlan: AccountingObject {
+public final class AccountingPlan: AccountingObject {
     
     // MARK: - Properties
     
     public let id: UUID = UUID()
-    public var label: String
-    public var description: String
-    public var country: Country
-    public var language: Locale.Language
-    public var version: String
-    public var publishDate: Date
-    public var effectiveYear: Int
-    public var authority: AccountingAuthority
-    public var rootClasses: [AccountingAccount]?
+    public let label: String
+    public let description: String
+    public let countryCodeISO: Int?
+    public let languageCodeISO: String
+    public let version: String
+    public let effectiveYear: Int
+    public let authority: AccountingAuthority
+    public let rootClasses: [AccountingAccount]?
     
     // MARK: - Inits
     
     public init(
         label: String,
         description: String,
-        country: Country,
-        language: Locale.Language,
+        countryCodeISO: Int? = nil,
+        languageCodeISO: String,
         version: String,
-        publishDate: Date,
         effectiveYear: Int,
         authority: AccountingAuthority,
         rootClasses: [AccountingAccount]? = nil
     ) {
         self.label = label
         self.description = description
-        self.country = country
-        self.language = language
+        self.countryCodeISO = countryCodeISO
+        self.languageCodeISO = languageCodeISO
         self.version = version
-        self.publishDate = publishDate
+
         self.effectiveYear = effectiveYear
         self.authority = authority
         self.rootClasses = rootClasses
@@ -72,5 +70,19 @@ public class AccountingPlan: AccountingObject {
     public static func == (lhs: AccountingPlan, rhs: AccountingPlan) -> Bool {
         lhs.id == rhs.id
     }
+    
+}
+
+extension AccountingPlan {
+    
+    public static let pcgFrance2026 = AccountingPlan(
+        label: "Plan comptable général",
+        description: "Règlement ANC 2014-03",
+        countryCodeISO: 250,
+        languageCodeISO: "fra",
+        version: "1er Janvier 2026",
+        effectiveYear: 2026,
+        authority: .anc
+    )
     
 }

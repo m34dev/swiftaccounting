@@ -22,31 +22,31 @@
 import Foundation
 import CountryKit
 
-public class AccountingAuthority: AccountingObject {
+public final class AccountingAuthority: AccountingObject {
     
     // MARK: - Properties
     
     public let id: UUID = UUID()
-    public var name: String
-    public var acronym: String?
-    public var description: String
-    public var websiteURL: String
-    public var address: String
-    public var zipCode: String
-    public var city: String
-    public var country: Country
+    public let name: String
+    public let acronym: String?
+    public let description: String?
+    public let websiteURL: String
+    public let address: String
+    public let zipCode: String
+    public let city: String
+    public let countryCodeISO: Int?
     
     // MARK: - Inits
     
     public init(
         name: String,
         acronym: String? = nil,
-        description: String,
+        description: String? = nil,
         websiteURL: String,
         address: String,
         zipCode: String,
         city: String,
-        country: Country
+        countryCodeISO: Int? = nil
     ) {
         self.name = name
         self.acronym = acronym
@@ -55,7 +55,7 @@ public class AccountingAuthority: AccountingObject {
         self.address = address
         self.zipCode = zipCode
         self.city = city
-        self.country = country
+        self.countryCodeISO = countryCodeISO
     }
     
     // MARK: - Hashable
@@ -70,4 +70,18 @@ public class AccountingAuthority: AccountingObject {
         lhs.id == rhs.id
     }
     
+}
+
+extension AccountingAuthority {
+    
+    public static let anc = AccountingAuthority(
+        name: "Autorité des normes comptables",
+        acronym: "ANC",
+        description: nil,
+        websiteURL: "https://www.anc.gouv.fr",
+        address: "5 place des Vins de France",
+        zipCode: "75012",
+        city: "Paris",
+        countryCodeISO: 250
+    )
 }

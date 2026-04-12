@@ -21,16 +21,16 @@
 
 import Foundation
 
-public class AccountingAccount: AccountingObject {
+public final class AccountingAccount: AccountingObject {
     
     // MARK: - Properties
     
     public let id: UUID = UUID()
-    public var code: String
-    public var label: String
-    public var description: String?
-    public var parentAccount: AccountingAccount?
-    public var subAccounts: [AccountingAccount]?
+    public let code: String
+    public let label: String
+    public let description: String?
+    public let parentAccount: AccountingAccount?
+    public let subAccounts: [AccountingAccount]?
     
     // MARK: - Inits
     
