@@ -29,7 +29,6 @@ public final class AccountingAccount: AccountingObject {
     public let code: String
     public let label: String
     public let description: String?
-    public let parentAccount: AccountingAccount?
     public let subAccounts: [AccountingAccount]?
     
     // MARK: - Inits
@@ -38,13 +37,11 @@ public final class AccountingAccount: AccountingObject {
         code: String,
         label: String,
         description: String? = nil,
-        parentAccount: AccountingAccount? = nil,
         subAccounts: [AccountingAccount]? = nil
     ) {
         self.code = code
         self.label = label
         self.description = description
-        self.parentAccount = parentAccount
         self.subAccounts = subAccounts
     }
     
