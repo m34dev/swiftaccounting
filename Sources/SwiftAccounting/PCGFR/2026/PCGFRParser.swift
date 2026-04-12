@@ -21,7 +21,7 @@
 
 import Foundation
 
-public struct PCGFRParser {
+internal struct PCGFRParser {
     
     // MARK: - DTO types
     
@@ -39,14 +39,14 @@ public struct PCGFRParser {
     
     // MARK: - Type methods
     
-    public static func parsePCGFR2026() throws -> [AccountingAccount] {
-        guard let url = Bundle.module.url(
+    internal static func parsePCGFR2026() throws -> [AccountingAccount] {
+        guard let jsonURL = Bundle.module.url(
             forResource: "pcg_2026",
             withExtension: "json"
         ) else {
             throw PCGFRParserError.fileNotFound
         }
-        let data = try Data(contentsOf: url)
+        let data = try Data(contentsOf: jsonURL)
         let pcgFile = try JSONDecoder().decode(PCGFile.self, from: data)
         return pcgFile.nested.map { convert($0) }
     }
@@ -64,6 +64,6 @@ public struct PCGFRParser {
 
 // MARK: - Errors
 
-public enum PCGFRParserError: Error {
+internal enum PCGFRParserError: Error {
     case fileNotFound
 }

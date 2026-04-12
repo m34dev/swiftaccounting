@@ -33,7 +33,7 @@ public final class AccountingPlan: AccountingObject {
     public let version: String
     public let effectiveYear: Int
     public let authority: AccountingAuthority
-    public let rootClasses: [AccountingAccount]?
+    public let accounts: [AccountingAccount]
     
     // MARK: - Inits
     
@@ -45,17 +45,16 @@ public final class AccountingPlan: AccountingObject {
         version: String,
         effectiveYear: Int,
         authority: AccountingAuthority,
-        rootClasses: [AccountingAccount]? = nil
+        accounts: [AccountingAccount]
     ) {
         self.label = label
         self.description = description
         self.countryCodeISO = countryCodeISO
         self.languageCodeISO = languageCodeISO
         self.version = version
-
         self.effectiveYear = effectiveYear
         self.authority = authority
-        self.rootClasses = rootClasses
+        self.accounts = accounts
     }
     
     // MARK: - Hashable
@@ -74,14 +73,18 @@ public final class AccountingPlan: AccountingObject {
 
 extension AccountingPlan {
     
-    public static let pcgFrance2026 = AccountingPlan(
-        label: "Plan comptable général",
-        description: "Règlement ANC 2014-03",
-        countryCodeISO: 250,
-        languageCodeISO: "fra",
-        version: "1er Janvier 2026",
-        effectiveYear: 2026,
-        authority: .anc
-    )
+    public static func getPCGFR2026() throws -> AccountingPlan {
+        let accounts = try PCGFRParser.parsePCGFR2026()
+        return AccountingPlan(
+            label: "Plan comptable général",
+            description: "Règlement ANC 2014-03",
+            countryCodeISO: 250,
+            languageCodeISO: "fra",
+            version: "1er Janvier 2026",
+            effectiveYear: 2026,
+            authority: .anc,
+            accounts: accounts
+        )
+    }
     
 }
