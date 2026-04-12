@@ -54,7 +54,7 @@ public struct PCGFRParser {
     private static func convert(_ dto: NestedAccountDTO) -> AccountingAccount {
         let subAccounts = dto.accounts.isEmpty ? nil : dto.accounts.map { convert($0) }
         return AccountingAccount(
-            code: String(dto.number),
+            code: dto.number,
             label: dto.label,
             subAccounts: subAccounts
         )

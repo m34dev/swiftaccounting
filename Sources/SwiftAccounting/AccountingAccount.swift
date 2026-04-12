@@ -26,7 +26,7 @@ public final class AccountingAccount: AccountingObject {
     // MARK: - Properties
     
     public let id: UUID = UUID()
-    public let code: String
+    public let code: Int
     public let label: String
     public let description: String?
     public let subAccounts: [AccountingAccount]?
@@ -34,7 +34,7 @@ public final class AccountingAccount: AccountingObject {
     // MARK: - Inits
     
     public init(
-        code: String,
+        code: Int,
         label: String,
         description: String? = nil,
         subAccounts: [AccountingAccount]? = nil
