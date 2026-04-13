@@ -56,6 +56,7 @@ internal struct PCGFRParser {
         return AccountingAccount(
             code: dto.number,
             label: dto.label,
+            system: dto.system,
             subAccounts: subAccounts
         )
     }

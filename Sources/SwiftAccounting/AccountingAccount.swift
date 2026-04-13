@@ -21,7 +21,7 @@
 
 import Foundation
 
-public final class AccountingAccount: AccountingObject {
+public final class AccountingAccount: Decodable, AccountingObject {
     
     // MARK: - Properties
     
@@ -29,6 +29,7 @@ public final class AccountingAccount: AccountingObject {
     public let code: Int
     public let label: String
     public let description: String?
+    public let system: String
     public let subAccounts: [AccountingAccount]?
     
     // MARK: - Inits
@@ -37,11 +38,13 @@ public final class AccountingAccount: AccountingObject {
         code: Int,
         label: String,
         description: String? = nil,
+        system: String,
         subAccounts: [AccountingAccount]? = nil
     ) {
         self.code = code
         self.label = label
         self.description = description
+        self.system = system
         self.subAccounts = subAccounts
     }
     
