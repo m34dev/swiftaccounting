@@ -137,9 +137,15 @@ SwiftAccounting includes the French *Plan Comptable Général* (General Accounti
 let pcgfr2026 = try AccountingPlan.getPCGFR2026()
 ```
 
+## Acknowledgments
+
+### French Accounting Plan Data
+
+The French accounting plan (PCGFR) data used in this package is sourced from the [PCG project](https://github.com/arrhes/PCG) by arrhes, which provides a comprehensive JSON representation of the Plan Comptable Général. We are grateful for this well-structured resource that enables accurate accounting plan integration.
+
 ## Contributing
 
-Contributions are welcome! This project is maintained by [M34D](https://m34d.com). Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on reporting bugs, suggesting features, submitting changes, and adding new models.
+Contributions are welcome! This project is maintained by [M34D](https://m34d.com). Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on reporting bugs, suggesting features, submitting changes, and adding new accounting plans.
 
 ## Versioning
 
