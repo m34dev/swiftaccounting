@@ -42,6 +42,8 @@ let package = Package(
             name: "SwiftAccounting",
             resources: [
                 .process("PCGFR/2026/pcg_2026.json"),
+                .process("PCGFR/2025/pcg_2025.json"),
+                .process("PCGFR/2024/pcg_2024.json"),
             ]
         ),
         .testTarget(

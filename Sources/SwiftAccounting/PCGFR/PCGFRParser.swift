@@ -39,9 +39,10 @@ internal struct PCGFRParser {
     
     // MARK: - Type methods
     
-    internal static func parsePCGFR2026() throws -> [AccountingAccount] {
+    internal static func parsePCGFR(year: String = "2026") throws -> [AccountingAccount] {
+        let resourceName = "pcg_\(year)"
         guard let jsonURL = Bundle.module.url(
-            forResource: "pcg_2026",
+            forResource: resourceName,
             withExtension: "json"
         ) else {
             throw PCGFRParserError.fileNotFound

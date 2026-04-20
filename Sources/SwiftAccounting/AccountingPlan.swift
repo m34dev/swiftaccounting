@@ -77,7 +77,7 @@ public final class AccountingPlan: AccountingObject {
 extension AccountingPlan {
     
     public static func getPCGFR2026(includeClass8: Bool = true) throws -> AccountingPlan {
-        var accounts = try PCGFRParser.parsePCGFR2026()
+        var accounts = try PCGFRParser.parsePCGFR(year: "2026")
         
         if includeClass8 && !accounts.contains(where: { $0.code == 8 }) {
             let class8Accounts = getClass8Accounts()
@@ -92,6 +92,48 @@ extension AccountingPlan {
             languageCodeISO: "fra",
             version: "1er Janvier 2026",
             effectiveYear: 2026,
+            authority: .anc,
+            accounts: accounts
+        )
+    }
+    
+    public static func getPCGFR2025(includeClass8: Bool = true) throws -> AccountingPlan {
+        var accounts = try PCGFRParser.parsePCGFR(year: "2025")
+        
+        if includeClass8 && !accounts.contains(where: { $0.code == 8 }) {
+            let class8Accounts = getClass8Accounts()
+            accounts.append(class8Accounts)
+        }
+        
+        return AccountingPlan(
+            code: "PCGFR2025",
+            label: "Plan comptable général",
+            description: "Règlement ANC 2014-03",
+            countryCodeISO: 250,
+            languageCodeISO: "fra",
+            version: "1er Janvier 2025",
+            effectiveYear: 2025,
+            authority: .anc,
+            accounts: accounts
+        )
+    }
+    
+    public static func getPCGFR2024(includeClass8: Bool = true) throws -> AccountingPlan {
+        var accounts = try PCGFRParser.parsePCGFR(year: "2024")
+        
+        if includeClass8 && !accounts.contains(where: { $0.code == 8 }) {
+            let class8Accounts = getClass8Accounts()
+            accounts.append(class8Accounts)
+        }
+        
+        return AccountingPlan(
+            code: "PCGFR2024",
+            label: "Plan comptable général",
+            description: "Règlement ANC 2014-03",
+            countryCodeISO: 250,
+            languageCodeISO: "fra",
+            version: "1er Janvier 2024",
+            effectiveYear: 2024,
             authority: .anc,
             accounts: accounts
         )
