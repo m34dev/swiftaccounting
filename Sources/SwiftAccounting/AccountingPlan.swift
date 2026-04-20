@@ -26,6 +26,7 @@ public final class AccountingPlan: AccountingObject {
     // MARK: - Properties
     
     public let id: UUID = UUID()
+    public let code: String
     public let label: String
     public let description: String
     public let countryCodeISO: Int?
@@ -38,6 +39,7 @@ public final class AccountingPlan: AccountingObject {
     // MARK: - Inits
     
     public init(
+        code: String,
         label: String,
         description: String,
         countryCodeISO: Int? = nil,
@@ -47,6 +49,7 @@ public final class AccountingPlan: AccountingObject {
         authority: AccountingAuthority,
         accounts: [AccountingAccount]
     ) {
+        self.code = code
         self.label = label
         self.description = description
         self.countryCodeISO = countryCodeISO
@@ -73,9 +76,16 @@ public final class AccountingPlan: AccountingObject {
 
 extension AccountingPlan {
     
-    public static func getPCGFR2026() throws -> AccountingPlan {
-        let accounts = try PCGFRParser.parsePCGFR2026()
+    public static func getPCGFR2026(includeClass8: Bool = true) throws -> AccountingPlan {
+        var accounts = try PCGFRParser.parsePCGFR2026()
+        
+        if includeClass8 && !accounts.contains(where: { $0.code == 8 }) {
+            let class8Accounts = getClass8Accounts()
+            accounts.append(class8Accounts)
+        }
+        
         return AccountingPlan(
+            code: "PCGFR2026",
             label: "Plan comptable général",
             description: "Règlement ANC 2014-03",
             countryCodeISO: 250,
@@ -84,6 +94,157 @@ extension AccountingPlan {
             effectiveYear: 2026,
             authority: .anc,
             accounts: accounts
+        )
+    }
+    
+    /// Returns the Class 8 accounts (Comptes spéciaux) for PCGFR 2026
+    private static func getClass8Accounts() -> AccountingAccount {
+        return AccountingAccount(
+            code: 8,
+            label: "Comptes spéciaux",
+            description: nil,
+            system: "minimal",
+            subAccounts: [
+                AccountingAccount(
+                    code: 80,
+                    label: "Engagements",
+                    system: "minimal",
+                    subAccounts: [
+                        AccountingAccount(
+                            code: 801,
+                            label: "Engagements donnés par l'entité",
+                            system: "facultatif",
+                            subAccounts: [
+                                AccountingAccount(
+                                    code: 8011,
+                                    label: "Avals, cautions, garanties",
+                                    system: "facultatif",
+                                    subAccounts: nil
+                                ),
+                                AccountingAccount(
+                                    code: 8014,
+                                    label: "Effets circulant sous l’endos de l’entité",
+                                    system: "facultatif",
+                                    subAccounts: nil
+                                ),
+                                AccountingAccount(
+                                    code: 8016,
+                                    label: "Redevances crédit-bail restant à courir",
+                                    system: "facultatif",
+                                    subAccounts: [
+                                        AccountingAccount(
+                                            code: 80161,
+                                            label: "Crédit-bail mobilier",
+                                            system: "facultatif",
+                                            subAccounts: nil
+                                        ),
+                                        AccountingAccount(
+                                            code: 80165,
+                                            label: "Crédit-bail immobilier",
+                                            system: "facultatif",
+                                            subAccounts: nil
+                                        )
+                                    ]
+                                ),
+                                AccountingAccount(
+                                    code: 8018,
+                                    label: "Autres engagements donnés",
+                                    system: "facultatif",
+                                    subAccounts: nil
+                                )
+                            ]
+                        ),
+                        AccountingAccount(
+                            code: 802,
+                            label: "Engagements reçus par l'entité",
+                            system: "facultatif",
+                            subAccounts: [
+                                AccountingAccount(
+                                    code: 8021,
+                                    label: "Avals, cautions, garanties",
+                                    system: "facultatif",
+                                    subAccounts: nil
+                                ),
+                                AccountingAccount(
+                                    code: 8024,
+                                    label: "Créances escomptées non échues",
+                                    system: "facultatif",
+                                    subAccounts: nil
+                                ),
+                                AccountingAccount(
+                                    code: 8026,
+                                    label: "Engagements reçus pour utilisation en crédit-bail",
+                                    system: "facultatif",
+                                    subAccounts: [
+                                        AccountingAccount(
+                                            code: 80261,
+                                            label: "Crédit-bail mobilier",
+                                            system: "facultatif",
+                                            subAccounts: nil
+                                        ),
+                                        AccountingAccount(
+                                            code: 80265,
+                                            label: "Crédit-bail immobilier",
+                                            system: "facultatif",
+                                            subAccounts: nil
+                                        )
+                                    ]
+                                ),
+                                AccountingAccount(
+                                    code: 8028,
+                                    label: "Autres engagements reçus",
+                                    system: "facultatif",
+                                    subAccounts: nil
+                                )
+                            ]
+                        ),
+                        AccountingAccount(
+                            code: 809,
+                            label: "Contrepartie des engagements",
+                            system: "facultatif",
+                            subAccounts: [
+                                AccountingAccount(
+                                    code: 8091,
+                                    label: "Contrepartie 801",
+                                    system: "facultatif",
+                                    subAccounts: nil
+                                ),
+                                AccountingAccount(
+                                    code: 8092,
+                                    label: "Contrepartie 802",
+                                    system: "facultatif",
+                                    subAccounts: nil
+                                )
+                            ]
+                        )
+                    ]
+                ),
+                AccountingAccount(
+                    code: 88,
+                    label: "Résultat en instance d'affectation",
+                    system: "minimal",
+                    subAccounts: nil
+                ),
+                AccountingAccount(
+                    code: 89,
+                    label: "Bilan",
+                    system: "minimal",
+                    subAccounts: [
+                        AccountingAccount(
+                            code: 890,
+                            label: "Bilan d'ouverture",
+                            system: "minimal",
+                            subAccounts: nil
+                        ),
+                        AccountingAccount(
+                            code: 891,
+                            label: "Bilan de clôture",
+                            system: "minimal",
+                            subAccounts: nil
+                        )
+                    ]
+                )
+            ]
         )
     }
     
