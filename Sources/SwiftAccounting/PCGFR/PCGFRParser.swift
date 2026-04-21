@@ -39,8 +39,8 @@ internal struct PCGFRParser {
     
     // MARK: - Type methods
     
-    internal static func parsePCGFR(year: String = "2026") throws -> [AccountingAccount] {
-        let resourceName = "pcg_\(year)"
+    internal static func parsePCGFR(_ year: PCGFRYear = .year2026) throws -> [AccountingAccount] {
+        let resourceName = "pcg_\(year.rawValue)"
         guard let jsonURL = Bundle.module.url(
             forResource: resourceName,
             withExtension: "json"
@@ -68,4 +68,10 @@ internal struct PCGFRParser {
 
 internal enum PCGFRParserError: Error {
     case fileNotFound
+}
+
+internal enum PCGFRYear: String {
+    case year2024 = "2024"
+    case year2025 = "2025"
+    case year2026 = "2026"
 }

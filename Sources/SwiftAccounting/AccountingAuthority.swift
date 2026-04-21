@@ -25,7 +25,7 @@ public final class AccountingAuthority: AccountingObject {
     
     // MARK: - Properties
     
-    public let id: UUID = UUID()
+    public let id: UUID
     public let name: String
     public let acronym: String?
     public let description: String?
@@ -38,6 +38,7 @@ public final class AccountingAuthority: AccountingObject {
     // MARK: - Inits
     
     public init(
+        id: UUID = UUID(),
         name: String,
         acronym: String? = nil,
         description: String? = nil,
@@ -47,6 +48,7 @@ public final class AccountingAuthority: AccountingObject {
         city: String,
         countryCodeISO: Int? = nil
     ) {
+        self.id = id
         self.name = name
         self.acronym = acronym
         self.description = description
@@ -69,18 +71,4 @@ public final class AccountingAuthority: AccountingObject {
         lhs.id == rhs.id
     }
     
-}
-
-extension AccountingAuthority {
-    
-    public static let anc = AccountingAuthority(
-        name: "Autorité des normes comptables",
-        acronym: "ANC",
-        description: nil,
-        websiteURL: "https://www.anc.gouv.fr",
-        address: "5 place des Vins de France",
-        zipCode: "75012",
-        city: "Paris",
-        countryCodeISO: 250
-    )
 }

@@ -25,7 +25,7 @@ public final class AccountingAccount: Decodable, AccountingObject {
     
     // MARK: - Properties
     
-    public let id: UUID = UUID()
+    public let id: UUID
     public let code: Int
     public let label: String
     public let description: String?
@@ -35,12 +35,14 @@ public final class AccountingAccount: Decodable, AccountingObject {
     // MARK: - Inits
     
     public init(
+        id: UUID = UUID(),
         code: Int,
         label: String,
         description: String? = nil,
         system: String,
         subAccounts: [AccountingAccount]? = nil
     ) {
+        self.id = id
         self.code = code
         self.label = label
         self.description = description
