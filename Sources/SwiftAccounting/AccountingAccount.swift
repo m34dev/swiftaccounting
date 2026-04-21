@@ -64,9 +64,9 @@ public final class AccountingAccount: Decodable, AccountingObject {
     // MARK: - Equatable
     
     public static func == (lhs: AccountingAccount, rhs: AccountingAccount) -> Bool {
-        lhs.id == rhs.id
-        lhs.code = rhs.code
-        lhs.label = rhs.label
+        lhs.id == rhs.id &&
+        lhs.code == rhs.code &&
+        lhs.label == rhs.label &&
         lhs.subAccounts == rhs.subAccounts
     }
     
