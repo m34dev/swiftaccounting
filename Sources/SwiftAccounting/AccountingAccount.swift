@@ -54,12 +54,20 @@ public final class AccountingAccount: Decodable, AccountingObject {
     
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
+        hasher.combine(code)
+        hasher.combine(label)
+        if let subAccounts {
+            hasher.combine(subAccounts)
+        }
     }
     
     // MARK: - Equatable
     
     public static func == (lhs: AccountingAccount, rhs: AccountingAccount) -> Bool {
         lhs.id == rhs.id
+        lhs.code = rhs.code
+        lhs.label = rhs.label
+        lhs.subAccounts == rhs.subAccounts
     }
     
 }
