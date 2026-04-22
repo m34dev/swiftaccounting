@@ -28,9 +28,8 @@ public final class AccountingAccount: Decodable, AccountingObject {
     public let id: UUID
     public let code: Int
     public let label: String
-    public let description: String?
     public let system: String
-    public let subAccounts: [AccountingAccount]?
+    public let subAccounts: [AccountingAccount]
     
     // MARK: - Inits
     
@@ -38,14 +37,12 @@ public final class AccountingAccount: Decodable, AccountingObject {
         id: UUID = UUID(),
         code: Int,
         label: String,
-        description: String? = nil,
         system: String,
-        subAccounts: [AccountingAccount]? = nil
+        subAccounts: [AccountingAccount] = []
     ) {
         self.id = id
         self.code = code
         self.label = label
-        self.description = description
         self.system = system
         self.subAccounts = subAccounts
     }
@@ -56,9 +53,7 @@ public final class AccountingAccount: Decodable, AccountingObject {
         hasher.combine(id)
         hasher.combine(code)
         hasher.combine(label)
-        if let subAccounts {
-            hasher.combine(subAccounts)
-        }
+        hasher.combine(subAccounts)
     }
     
     // MARK: - Equatable
