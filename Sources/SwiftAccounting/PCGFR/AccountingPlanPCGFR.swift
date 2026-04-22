@@ -78,4 +78,22 @@ extension AccountingPlan {
 
     }
     
+    public func getBalanceSheetAccounts() -> [AccountingAccount] {
+        return accounts.filter {
+            $0.code >= 1 && $0.code <= 5
+        }
+    }
+
+    public func getPurchaseRevenueAccounts() -> [AccountingAccount] {
+        return accounts.filter {
+            $0.code >= 6 && $0.code <= 7
+        }
+    }
+
+    public func getSpecialAccounts() -> [AccountingAccount] {
+        return accounts.filter {
+            $0.code == 8
+        }
+    }
+    
 }
