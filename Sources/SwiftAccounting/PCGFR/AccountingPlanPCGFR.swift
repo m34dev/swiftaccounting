@@ -22,6 +22,15 @@
 import Foundation
 
 extension AccountingPlan {
+
+    // MARK: - Properties
+
+    public static let pcgFR2026PDFURL: URL? = Bundle.module.url(forResource: "pcg_20260101", withExtension: "pdf")
+    public static let pcgFR2025PDFURL: URL? = Bundle.module.url(forResource: "pcg_20250101", withExtension: "pdf")
+    public static let pcgFR2024PDFURL: URL? = Bundle.module.url(forResource: "pcg_20240101", withExtension: "pdf")
+    public static let pcgFR2026RecueilPDFURL: URL? = Bundle.module.url(forResource: "recueil_20260101", withExtension: "pdf")
+    public static let pcgFR2025RecueilPDFURL: URL? = Bundle.module.url(forResource: "recueil_20250101", withExtension: "pdf")
+    public static let pcgFR2024RecueilPDFURL: URL? = Bundle.module.url(forResource: "recueil_20240101", withExtension: "pdf")
     
     // MARK: - Methods
     
