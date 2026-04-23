@@ -44,6 +44,12 @@ let package = Package(
                 .process("PCGFR/2026/pcg_2026.json"),
                 .process("PCGFR/2025/pcg_2025.json"),
                 .process("PCGFR/2024/pcg_2024.json"),
+                .process("PCGFR/2026/pcg_20260101.pdf"),
+                .process("PCGFR/2025/pcg_20250101.pdf"),
+                .process("PCGFR/2024/pcg_20240101.pdf"),
+                .process("PCGFR/2026/recueil_20260101.pdf"),
+                .process("PCGFR/2025/recueil_20250101.pdf"),
+                .process("PCGFR/2024/recueil_20240101.pdf"),
             ]
         ),
         .testTarget(
