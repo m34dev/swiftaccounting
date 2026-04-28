@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org) using the following scheme: MAJOR.MINOR.PATCH
 
+## [0.9.0] - 2026-04-28
+
+Updated accounting type to @Obervable
+
+
 ## [0.8.1] - 2026-04-23
 
 Fixed PCG FR ANC PDF files access

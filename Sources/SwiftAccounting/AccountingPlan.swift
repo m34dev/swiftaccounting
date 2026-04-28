@@ -21,6 +21,9 @@
 
 import Foundation
 
+#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
+@Observable
+#endif
 public final class AccountingPlan: AccountingObject {
     
     // MARK: - Properties

@@ -21,6 +21,7 @@
 
 import Foundation
 
+#if os(iOS)
 extension AccountingPlan {
 
     // MARK: - Properties
